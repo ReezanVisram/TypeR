@@ -6,13 +6,23 @@ services:
     env_file:
       - .env
     environment:
-      - MYSQL_USER
+      - MYSQL_USERNAME
+      - MYSQL_DATABASE
       - MYSQL_ROOT_PASSWORD
-      - MYSQL_DB
     volumes:
       - ./.docker/mysql-data:/var/lib/msql/data
     ports:
       - "${MYSQL_PORT}:${MYSQL_PORT}"
+
+  scraper:
+    depends_on:
+      - db
+    build: ./scraper
+    volumes:
+      - ./scraper:/usr/src/app
+    command: python main.py
+    env_file:
+      - .env
 
   backend:
     depends_on:

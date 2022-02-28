@@ -1,12 +1,16 @@
-import express, { Request, Response } from 'express';
-import { PORT } from '../lib/config';
+import { createServer } from 'http';
+import App from './app';
+import { PORT } from './lib/config';
+import createDatabaseConnection from './lib/database';
 
-const app = express();
+async function startServer() {
+    await createDatabaseConnection();
+    const server = createServer(App());
+    server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!');
-});
-
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
-});
+try {
+    startServer();
+} catch (error) {
+    console.log(error);
+}
