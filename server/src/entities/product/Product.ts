@@ -13,10 +13,6 @@ export default class Product implements ProductType {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column('uuid')
-    @Generated('uuid')
-    uuid!: string;
-
     @Column('text')
     name!: string;
 

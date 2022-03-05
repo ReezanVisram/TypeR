@@ -1,9 +1,15 @@
 autopep8==1.6.0
 certifi==2021.10.8
+cffi==1.15.0
 charset-normalizer==2.0.12
+cryptography==36.0.1
 greenlet==1.1.2
 idna==3.3
+pony==0.7.16
 pycodestyle==2.8.0
+pycparser==2.21
+PyMySQL==1.0.2
+python-dotenv==0.19.2
 requests==2.27.1
 toml==0.10.2
 urllib3==1.26.8

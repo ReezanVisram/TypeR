@@ -5,6 +5,7 @@ import {
     Generated,
     CreateDateColumn,
     ManyToOne,
+    JoinColumn,
 } from 'typeorm';
 import { PriceType } from './types';
 import { ProductType } from '../product/types';
@@ -14,10 +15,6 @@ export default class Price implements PriceType {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column('uuid')
-    @Generated('uuid')
-    uuid!: string;
-
     @Column('decimal', { precision: 10, scale: 4 })
     price!: number;
 
@@ -25,5 +22,6 @@ export default class Price implements PriceType {
     priceDate!: Date;
 
     @ManyToOne('Product', 'id')
+    @JoinColumn({ name: 'product_id' })
     product!: ProductType;
 }
