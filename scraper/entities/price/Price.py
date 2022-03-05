@@ -1,4 +1,4 @@
-from lib.database import db
+from lib.database.createDatabaseConnection import db
 from pony.orm import PrimaryKey, Required
 from decimal import Decimal
 from datetime import datetime
