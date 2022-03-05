@@ -1,7 +1,7 @@
-from pony import orm
+from pony.orm import Database, sql_debug
 from lib.config import MYSQL_HOST, MYSQL_USERNAME, MYSQL_ROOT_PASSWORD, MYSQL_DATABASE
 
-db = orm.Database()
+db = Database()
 
 
 def create_database_connection():
