@@ -4,6 +4,11 @@ import {
     ProductRepositoryContract,
 } from './product';
 import { Price, PriceRepository, PriceRepositoryContract } from './price';
+import {
+    ProductType,
+    ProductTypeRepository,
+    ProductTypeRepositoryContract,
+} from './productType';
 
 export {
     Product,
@@ -12,4 +17,7 @@ export {
     Price,
     PriceRepository,
     PriceRepositoryContract,
+    ProductType,
+    ProductTypeRepository,
+    ProductTypeRepositoryContract,
 };

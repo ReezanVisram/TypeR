@@ -1,10 +1,10 @@
 from lib.database.initializeDatabase import initialize_database
-from entities.price import Price
-from entities.product import Product
+from modules.kbdfans.KBDFans import save_kbd_fans_products
 
 
 def main():
     initialize_database()
+    save_kbd_fans_products()
     print('connection made')
 
 

@@ -8,4 +8,6 @@ class Product(db.Entity):
     name = Required(str)
     link = Required(str)
     image_link = Required(str)
-    price = Set('Price')
+    prices = Set('Price')
+    types = Set('ProductType', table='products_product_types',
+                column='product_type_id')

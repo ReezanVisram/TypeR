@@ -8,7 +8,7 @@ import {
     JoinColumn,
 } from 'typeorm';
 import { PriceType } from './types';
-import { ProductType } from '../product/types';
+import { ProductType_ } from '../product/types';
 
 @Entity({ name: 'prices' })
 export default class Price implements PriceType {
@@ -23,5 +23,5 @@ export default class Price implements PriceType {
 
     @ManyToOne('Product', 'id')
     @JoinColumn({ name: 'product_id' })
-    product!: ProductType;
+    product!: ProductType_;
 }

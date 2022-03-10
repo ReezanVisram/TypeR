@@ -1,4 +1,7 @@
 from lib.database.createDatabaseConnection import create_database_connection, db
+from entities.price import Price
+from entities.productType import ProductType
+from entities.product import Product
 from pony.orm import show, sql_debug
 
 
