@@ -9,4 +9,4 @@ class Price(db.Entity):
     id = PrimaryKey(int, auto=True)
     price = Required(Decimal, 10, 4)
     price_date = Required(datetime, default=datetime.now)
-    product_id = Required('Product')
+    variant_id = Required('Variant')
