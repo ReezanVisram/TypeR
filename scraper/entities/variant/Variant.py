@@ -9,5 +9,5 @@ class Variant(db.Entity):
     grams = Required(float)
     available = Required(bool)
     featured_image = Optional('VariantImage')
-    product = Required('Product')
+    product = Optional('Product')
     prices = Set('Price')

@@ -1,5 +1,5 @@
 from lib.database.createDatabaseConnection import db
-from pony.orm import PrimaryKey, Required
+from pony.orm import PrimaryKey, Required, Optional
 
 
 class VariantImage(db.Entity):
@@ -8,4 +8,4 @@ class VariantImage(db.Entity):
     src = Required(str)
     width = Required(int)
     height = Required(int)
-    variant = Required('Variant')
+    variant = Optional('Variant')
