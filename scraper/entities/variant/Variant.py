@@ -8,6 +8,6 @@ class Variant(db.Entity):
     title = Required(str)
     grams = Required(float)
     available = Required(bool)
-    featured_image = Optional('VariantImage')
-    product = Optional('Product')
+    featured_image_id = Optional('VariantImage')
+    product_id = Optional('Product')
     prices = Set('Price')

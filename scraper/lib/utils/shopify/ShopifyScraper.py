@@ -59,7 +59,12 @@ class ShopifyScraper(Scraper):
         variants = []
 
         for variant in product['variants']:
-            new_variant = Variant(title=variant['title'], grams=variant['grams'], available=variant['available'], featured_image=self.get_image(
+            if (variant['title'] == 'Default Title'):
+                variant_title = product['title']
+            else:
+                variant_title = variant['title']
+
+            new_variant = Variant(title=variant_title, grams=variant['grams'], available=variant['available'], featured_image=self.get_image(
                 variant['featured_image']), prices=self.get_price(variant))
             new_variant.flush()
             variants.append(new_variant)

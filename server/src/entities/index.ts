@@ -9,6 +9,16 @@ import {
     ProductTypeRepository,
     ProductTypeRepositoryContract,
 } from './productType';
+import {
+    Variant,
+    VariantRepository,
+    VariantRepositoryContract,
+} from './variant';
+import {
+    VariantImage,
+    VariantImageRepository,
+    VariantImageRepositoryContract,
+} from './variantImage';
 
 export {
     Product,
@@ -20,4 +30,10 @@ export {
     ProductType,
     ProductTypeRepository,
     ProductTypeRepositoryContract,
+    Variant,
+    VariantRepository,
+    VariantRepositoryContract,
+    VariantImage,
+    VariantImageRepository,
+    VariantImageRepositoryContract,
 };

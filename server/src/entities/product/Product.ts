@@ -10,6 +10,7 @@ import {
 import { ProductType_ } from './types';
 import { PriceType } from '../price/types';
 import { ProductTypeType } from '../productType/types';
+import { VariantType } from '../variant/types';
 
 @Entity({ name: 'products' })
 export default class Product implements ProductType_ {
@@ -25,9 +26,6 @@ export default class Product implements ProductType_ {
     @Column('text', { name: 'image_link' })
     imageLink!: string;
 
-    @OneToMany('Price', 'id')
-    price!: PriceType;
-
     @ManyToMany('ProductType', 'id')
     @JoinTable({
         name: 'products_product_types',
@@ -39,4 +37,7 @@ export default class Product implements ProductType_ {
         },
     })
     productType!: ProductTypeType[];
+
+    @OneToMany('Variant', 'id')
+    variant!: VariantType;
 }

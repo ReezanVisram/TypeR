@@ -2,13 +2,12 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    Generated,
     CreateDateColumn,
     ManyToOne,
     JoinColumn,
 } from 'typeorm';
+import { VariantType } from '../variant/types';
 import { PriceType } from './types';
-import { ProductType_ } from '../product/types';
 
 @Entity({ name: 'prices' })
 export default class Price implements PriceType {
@@ -21,7 +20,10 @@ export default class Price implements PriceType {
     @CreateDateColumn({ name: 'price_date' })
     priceDate!: Date;
 
-    @ManyToOne('Product', 'id')
-    @JoinColumn({ name: 'product_id' })
-    product!: ProductType_;
+    @Column('int', { name: 'variant_id' })
+    variantId!: number;
+
+    @ManyToOne('Variant', 'id')
+    @JoinColumn({ name: 'variant_id' })
+    variant!: VariantType;
 }
