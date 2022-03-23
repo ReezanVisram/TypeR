@@ -27,12 +27,11 @@ class ShopifyScraper(Scraper):
                         new_product = Product(
                             title=self.get_title(product), link=self.get_link(sub, product), vendor=self.get_vendor(product), variants=self.get_variants(product), types=self.get_product_types(product))
                         new_product.flush()
+                    else:
+                        self.get_current_prices(product)
 
     def save(self):
         self.get()
-        # for product in self.products:
-        #     print(product)
-        pass
 
     def check_product_exists(self, product_name):
         return Product.exists(title=product_name)
@@ -64,7 +63,7 @@ class ShopifyScraper(Scraper):
             else:
                 variant_title = variant['title']
 
-            new_variant = Variant(title=variant_title, grams=variant['grams'], available=variant['available'], featured_image=self.get_image(
+            new_variant = Variant(title=variant_title, grams=variant['grams'], available=variant['available'], featured_image_id=self.get_image(
                 variant['featured_image']), prices=self.get_price(variant))
             new_variant.flush()
             variants.append(new_variant)
@@ -82,3 +81,9 @@ class ShopifyScraper(Scraper):
     def get_price(self, variant):
         new_price = Price(price=variant['price'])
         return new_price
+
+    def get_current_prices(self, product):
+        for variant in product['variants']:
+            new_price = Price(price=variant['price'], variant_id=(Variant.select(
+                lambda v: v.title == variant['title'] or (variant['title'] == 'Default Title' and v.title == product['title']))).first())
+            new_price.flush()
