@@ -27,14 +27,14 @@ export default class Variant implements VariantType {
     @Column('int', { name: 'featured_image_id', nullable: true })
     featuredImageId!: number;
 
-    @Column('int', { name: 'product_id' })
+    @Column('int', { name: 'product_id', nullable: true })
     productId!: number;
 
     @OneToOne('VariantImage', 'id')
-    @JoinColumn({ name: 'featured_image' })
+    @JoinColumn({ name: 'featured_image_id' })
     featuredImage!: VariantImageType;
 
-    @ManyToOne('Product', 'id')
+    @ManyToOne('Product', 'id', { nullable: true })
     @JoinColumn({ name: 'product_id' })
     product!: ProductType_;
 }

@@ -14,6 +14,7 @@ const createDatabaseConnection = async () => {
         username: MYSQL_USERNAME,
         password: MYSQL_ROOT_PASSWORD,
         entities: [`${__dirname}/../entities/*{.ts,.js}`],
+        synchronize: true,
     });
 };
 

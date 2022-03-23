@@ -18,13 +18,13 @@ export default class Product implements ProductType_ {
     id!: number;
 
     @Column('text')
-    name!: string;
+    title!: string;
 
     @Column('text')
     link!: string;
 
-    @Column('text', { name: 'image_link' })
-    imageLink!: string;
+    @Column('text')
+    vendor!: string;
 
     @ManyToMany('ProductType', 'id')
     @JoinTable({
@@ -39,5 +39,5 @@ export default class Product implements ProductType_ {
     productType!: ProductTypeType[];
 
     @OneToMany('Variant', 'id')
-    variant!: VariantType;
+    variant!: VariantType[];
 }

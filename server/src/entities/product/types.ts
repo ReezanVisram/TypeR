@@ -1,6 +1,6 @@
 export interface ProductType_ {
     id: number;
-    name: string;
+    title: string;
     link: string;
-    imageLink: string;
+    vendor: string;
 }
