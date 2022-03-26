@@ -1,25 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Prices from './components/pages/Prices';
-import Home from './components/pages/Home';
-import Test from './components/pages/Test';
+import HomeLayout from './components/layouts/HomeLayout';
 
-function App() {
+const App: React.FC<{}> = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path='/prices/'>
-                    <Prices />
-                </Route>
-                <Route path='/test/'>
-                    <Test />
-                </Route>
                 <Route path='/'>
-                    <Home />
+                    <HomeLayout />
                 </Route>
             </Switch>
         </BrowserRouter>
     );
-}
+};
 
 export default App;
