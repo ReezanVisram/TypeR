@@ -20,13 +20,9 @@ export default class ProductRepository implements ProductRepositoryContract {
     findAllLinearSwitches(): Promise<Product[]> {
         const queryBuilder = this.repository
             .createQueryBuilder('products')
-            .innerJoinAndSelect('product_types.type', 'types')
-            .where('types.type = :product_type', {
-                product_type: 'Linear switch',
-            })
+            .leftJoinAndSelect('products.types', 'type')
+            .where('type = :type', { type: 'Linear switch' })
             .getMany();
-
-        console.log(queryBuilder);
 
         return queryBuilder;
     }

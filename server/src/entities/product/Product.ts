@@ -27,8 +27,8 @@ export default class Product implements ProductType_ {
     @Column('varchar', { length: 255 })
     vendor!: string;
 
-    @ManyToOne('ProductType', 'id')
-    productType!: ProductTypeType[];
+    @OneToMany('ProductType', 'id')
+    types!: ProductTypeType[];
 
     @OneToMany('Variant', 'id')
     variant!: VariantType[];
