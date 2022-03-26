@@ -21,7 +21,7 @@ export default class ProductRepository implements ProductRepositoryContract {
         const queryBuilder = this.repository
             .createQueryBuilder('products')
             .leftJoinAndSelect('products.types', 'type')
-            .where('type = :type', { type: 'Linear switch' })
+            .where('type.type = :type', { type: 'Linear switch' })
             .getMany();
 
         return queryBuilder;

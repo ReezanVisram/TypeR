@@ -7,7 +7,7 @@ export function createSwitchesRouter(controllers: {
     const router = Router();
 
     const { switchesController } = controllers;
-    router.get('/', async (req: Request, res: Response) => {
+    router.get('/linear', async (req: Request, res: Response) => {
         const response = await switchesController.getLinearSwitches();
         res.status(200).send(response);
     });

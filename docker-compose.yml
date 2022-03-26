@@ -10,7 +10,7 @@ services:
       - MYSQL_DATABASE
       - MYSQL_ROOT_PASSWORD
     volumes:
-      - ./.docker/mysql-data:/var/lib/msql/data
+      - db-data:/var/lib/mysql
     ports:
       - "${MYSQL_PORT}:${MYSQL_PORT}"
 
@@ -57,3 +57,6 @@ services:
     ports:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     stdin_open: true
+volumes:
+  db-data:
+    driver: local

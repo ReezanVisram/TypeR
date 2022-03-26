@@ -7,11 +7,13 @@ import {
     ManyToMany,
     JoinTable,
     ManyToOne,
+    JoinColumn,
 } from 'typeorm';
 import { ProductType_ } from './types';
 import { PriceType } from '../price/types';
 import { ProductTypeType } from '../productType/types';
 import { VariantType } from '../variant/types';
+import { ProductType } from '../productType';
 
 @Entity({ name: 'products' })
 export default class Product implements ProductType_ {
@@ -27,8 +29,8 @@ export default class Product implements ProductType_ {
     @Column('varchar', { length: 255 })
     vendor!: string;
 
-    @OneToMany('ProductType', 'id')
-    types!: ProductTypeType[];
+    @OneToMany(() => ProductType, (type) => type.product)
+    types!: ProductType[];
 
     @OneToMany('Variant', 'id')
     variant!: VariantType[];

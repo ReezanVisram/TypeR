@@ -7,6 +7,7 @@ import {
     ManyToOne,
     JoinColumn,
 } from 'typeorm';
+import Product from '../product/Product';
 import { ProductType_ } from '../product/types';
 import { ProductTypeType } from './types';
 
@@ -18,10 +19,7 @@ export default class ProductType implements ProductTypeType {
     @Column('varchar', { length: 255 })
     type!: string;
 
-    @Column('int', { name: 'product_id', nullable: true })
-    productId!: number;
-
-    @ManyToOne('Product', 'id')
+    @ManyToOne(() => Product, (product) => product.types)
     @JoinColumn({ name: 'product_id' })
-    product!: ProductType_;
+    product!: Product;
 }
