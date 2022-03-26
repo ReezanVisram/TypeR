@@ -6,6 +6,7 @@ import {
     OneToMany,
     ManyToMany,
     JoinTable,
+    ManyToOne,
 } from 'typeorm';
 import { ProductType_ } from './types';
 import { PriceType } from '../price/types';
@@ -17,25 +18,16 @@ export default class Product implements ProductType_ {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column('text')
+    @Column('varchar', { length: 255 })
     title!: string;
 
-    @Column('text')
+    @Column('varchar', { length: 255 })
     link!: string;
 
-    @Column('text')
+    @Column('varchar', { length: 255 })
     vendor!: string;
 
-    @ManyToMany('ProductType', 'id')
-    @JoinTable({
-        name: 'products_product_types',
-        joinColumn: {
-            name: 'product_id',
-        },
-        inverseJoinColumn: {
-            name: 'product_type_id',
-        },
-    })
+    @ManyToOne('ProductType', 'id')
     productType!: ProductTypeType[];
 
     @OneToMany('Variant', 'id')

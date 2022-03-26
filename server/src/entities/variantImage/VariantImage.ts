@@ -7,7 +7,7 @@ export default class VariantImage implements VariantImageType {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column('text')
+    @Column('varchar', { length: 255 })
     src!: string;
 
     @Column('decimal')

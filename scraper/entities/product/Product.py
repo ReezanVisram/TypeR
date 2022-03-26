@@ -9,5 +9,4 @@ class Product(db.Entity):
     link = Required(str)
     vendor = Required(str)
     variants = Set('Variant')
-    types = Set('ProductType', table='products_product_types',
-                column='product_type_id')
+    types = Set('ProductType')
