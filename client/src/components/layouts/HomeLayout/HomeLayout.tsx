@@ -9,7 +9,6 @@ const HomeLayout: React.FC<HomeLayoutProps> = (props) => {
     return (
         <div>
             <TopBar {...topBar} />
-            <Typography>TypeR</Typography>
         </div>
     );
 };
