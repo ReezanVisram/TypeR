@@ -5,7 +5,10 @@ import {
     ManyToOne,
     JoinColumn,
     OneToOne,
+    OneToMany,
 } from 'typeorm';
+import { Price } from '../price';
+import { PriceType } from '../price/types';
 import { ProductType_ } from '../product/types';
 import { VariantImageType } from '../variantImage/types';
 import { VariantType } from './types';
@@ -37,4 +40,7 @@ export default class Variant implements VariantType {
     @ManyToOne('Product', 'id', { nullable: true })
     @JoinColumn({ name: 'product_id' })
     product!: ProductType_;
+
+    @OneToMany(() => Price, (type) => type.variant)
+    prices!: PriceType[];
 }

@@ -1,19 +1,8 @@
-import {
-    Entity,
-    Column,
-    PrimaryGeneratedColumn,
-    Generated,
-    OneToMany,
-    ManyToMany,
-    JoinTable,
-    ManyToOne,
-    JoinColumn,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { ProductType_ } from './types';
-import { PriceType } from '../price/types';
-import { ProductTypeType } from '../productType/types';
 import { VariantType } from '../variant/types';
 import { ProductType } from '../productType';
+import { Variant } from '../variant';
 
 @Entity({ name: 'products' })
 export default class Product implements ProductType_ {
@@ -32,6 +21,6 @@ export default class Product implements ProductType_ {
     @OneToMany(() => ProductType, (type) => type.product)
     types!: ProductType[];
 
-    @OneToMany('Variant', 'id')
-    variant!: VariantType[];
+    @OneToMany(() => Variant, (type) => type.product)
+    variants!: VariantType[];
 }

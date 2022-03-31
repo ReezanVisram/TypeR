@@ -21,12 +21,16 @@ export default class ProductRepository implements ProductRepositoryContract {
     findAllSwitches(): Promise<Product[]> {
         const queryBuilder = this.repository
             .createQueryBuilder('products')
-            .leftJoinAndSelect('products.types', 'type')
-            .where('type.type = :linearType', { linearType: 'Linear switch' })
-            .orWhere('type.type = :tactileType', {
+            .leftJoinAndSelect('products.variants', 'variants')
+            .leftJoinAndSelect('variants.prices', 'prices')
+            .innerJoinAndSelect('products.types', 'types')
+            .where('types.type = :linearType', { linearType: 'Linear switch' })
+            .orWhere('types.type = :tactileType', {
                 tactileType: 'Tactile switch',
             })
-            .orWhere('type.type = :clickyType', { clickyType: 'Clicky switch' })
+            .orWhere('types.type = :clickyType', {
+                clickyType: 'Clicky switch',
+            })
             .getMany();
 
         return queryBuilder;
