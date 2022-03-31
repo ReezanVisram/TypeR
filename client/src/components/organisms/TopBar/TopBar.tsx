@@ -8,7 +8,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
     const { topNav } = usePresenter(props);
 
     return (
-        <AppBar>
+        <AppBar position='static'>
             <TopNav {...topNav} />
         </AppBar>
     );
