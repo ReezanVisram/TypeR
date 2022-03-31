@@ -15,8 +15,8 @@ export default class Variant implements VariantType {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column('varchar', { length: 255 })
-    title!: string;
+    @Column('varchar', { length: 255, name: 'variant_title' })
+    variantTitle!: string;
 
     @Column('double')
     grams!: number;

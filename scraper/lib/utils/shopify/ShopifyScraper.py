@@ -25,7 +25,7 @@ class ShopifyScraper(Scraper):
                 for product in products:
                     if (not self.check_product_exists(product['title'])):
                         new_product = Product(
-                            title=self.get_title(product), link=self.get_link(sub, product), vendor=self.get_vendor(product), variants=self.get_variants(product), types=self.get_product_types(product))
+                            product_title=self.get_title(product), link=self.get_link(sub, product), vendor=self.get_vendor(product), variants=self.get_variants(product), types=self.get_product_types(product))
                         new_product.flush()
                     else:
                         self.get_current_prices(product)
@@ -34,7 +34,7 @@ class ShopifyScraper(Scraper):
         self.get()
 
     def check_product_exists(self, product_name):
-        return Product.exists(title=product_name)
+        return Product.exists(product_title=product_name)
 
     def get_title(self, product):
         return product['title']
@@ -63,7 +63,7 @@ class ShopifyScraper(Scraper):
             else:
                 variant_title = variant['title']
 
-            new_variant = Variant(title=variant_title, grams=variant['grams'], available=variant['available'], featured_image_id=self.get_image(
+            new_variant = Variant(variant_title=variant_title, grams=variant['grams'], available=variant['available'], featured_image_id=self.get_image(
                 variant['featured_image']), prices=self.get_price(variant))
             new_variant.flush()
             variants.append(new_variant)
@@ -85,5 +85,5 @@ class ShopifyScraper(Scraper):
     def get_current_prices(self, product):
         for variant in product['variants']:
             new_price = Price(price=variant['price'], variant_id=(Variant.select(
-                lambda v: v.title == variant['title'] or (variant['title'] == 'Default Title' and v.title == product['title']))).first())
+                lambda v: v.variant_title == variant['title'] or (variant['title'] == 'Default Title' and v.variant_title == product['title']))).first())
             new_price.flush()

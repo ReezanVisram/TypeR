@@ -20,8 +20,8 @@ export default class Product implements ProductType_ {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column('varchar', { length: 255 })
-    title!: string;
+    @Column('varchar', { length: 255, name: 'product_title' })
+    productTitle!: string;
 
     @Column('varchar', { length: 255 })
     link!: string;

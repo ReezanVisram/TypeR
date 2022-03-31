@@ -5,7 +5,7 @@ from pony.orm import PrimaryKey, Required, Set, Optional
 class Variant(db.Entity):
     _table_ = 'variants'
     id = PrimaryKey(int, auto=True)
-    title = Required(str)
+    variant_title = Required(str)
     grams = Required(float)
     available = Required(bool)
     featured_image_id = Optional('VariantImage')

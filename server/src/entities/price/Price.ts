@@ -20,10 +20,10 @@ export default class Price implements PriceType {
     @CreateDateColumn({ name: 'price_date' })
     priceDate!: Date;
 
-    @Column('int', { name: 'variant_id' })
+    @Column('int', { name: 'variant_id', nullable: true })
     variantId!: number;
 
-    @ManyToOne('Variant', 'id')
+    @ManyToOne('Variant', 'id', { nullable: true })
     @JoinColumn({ name: 'variant_id' })
     variant!: VariantType;
 }

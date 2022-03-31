@@ -1,6 +1,6 @@
 export interface VariantType {
     id: number;
-    title: string;
+    variantTitle: string;
     grams: number;
     available: boolean;
 }
