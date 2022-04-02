@@ -10,6 +10,7 @@ from entities.productType.ProductType import ProductType
 from entities.variant.Variant import Variant
 from entities.variantImage.VariantImage import VariantImage
 from entities.price.Price import Price
+from entities.productImage.ProductImage import ProductImage
 
 
 class ShopifyScraper(Scraper):
@@ -25,7 +26,7 @@ class ShopifyScraper(Scraper):
                 for product in products:
                     if (not self.check_product_exists(product['title'])):
                         new_product = Product(
-                            product_title=self.get_title(product), link=self.get_link(sub, product), vendor=self.get_vendor(product), variants=self.get_variants(product), types=self.get_product_types(product))
+                            product_title=self.get_title(product), link=self.get_link(sub, product), vendor=self.get_vendor(product), variants=self.get_variants(product), types=self.get_product_types(product), images=self.get_product_images(product))
                         new_product.flush()
                     else:
                         self.get_current_prices(product)
@@ -63,20 +64,30 @@ class ShopifyScraper(Scraper):
             else:
                 variant_title = variant['title']
 
-            new_variant = Variant(variant_title=variant_title, grams=variant['grams'], available=variant['available'], featured_image_id=self.get_image(
+            new_variant = Variant(variant_title=variant_title, grams=variant['grams'], available=variant['available'], featured_image_id=self.get_variant_image(
                 variant['featured_image']), prices=self.get_price(variant))
             new_variant.flush()
             variants.append(new_variant)
 
         return variants
 
-    def get_image(self, featured_image):
+    def get_variant_image(self, featured_image):
         if (featured_image):
             new_image = VariantImage(
                 src=featured_image['src'], width=featured_image['width'], height=featured_image['height'])
             return new_image
         else:
             return None
+
+    def get_product_images(self, product):
+        images = []
+        for image in product['images']:
+            new_image = ProductImage(
+                src=image['src'], width=image['width'], height=image['height'])
+            new_image.flush()
+            images.append(new_image)
+
+        return images
 
     def get_price(self, variant):
         new_price = Price(price=variant['price'])

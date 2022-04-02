@@ -10,3 +10,4 @@ class Product(db.Entity):
     vendor = Required(str)
     variants = Set('Variant')
     types = Set('ProductType')
+    images = Set('ProductImage')

@@ -19,6 +19,11 @@ import {
     VariantImageRepository,
     VariantImageRepositoryContract,
 } from './variantImage';
+import {
+    ProductImage,
+    ProductImageRepository,
+    ProductImageRepositoryContract,
+} from './productImage';
 
 export {
     Product,
@@ -36,4 +41,7 @@ export {
     VariantImage,
     VariantImageRepository,
     VariantImageRepositoryContract,
+    ProductImage,
+    ProductImageRepository,
+    ProductImageRepositoryContract,
 };
