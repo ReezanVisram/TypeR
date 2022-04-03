@@ -17,7 +17,7 @@ const usePresenter = (props: SwitchesBlockProps): SwitchesBlockProps => {
     );
 
     const handleProduct = (id: number) => {
-        history.push(`/product/${id}`);
+        history.push(`/products/${id}`);
     };
 
     props = {

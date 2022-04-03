@@ -3,5 +3,5 @@ export const PRODUCT_ROUTES = {
     switches: '/products/switches/:switchType?',
     keycaps: '/products/keycaps',
     pcbs: '/products/pcbs',
-    product: '/product/:id',
+    product: '/products/:id',
 };
