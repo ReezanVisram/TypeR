@@ -15,4 +15,12 @@ export default class SwitchesController implements SwitchesControllerContract {
     getLinearSwitches(): Promise<Product[]> {
         return this.getSwitchesService.getLinearSwitches();
     }
+
+    getTactileSwitches(): Promise<Product[]> {
+        return this.getSwitchesService.getTactileSwitches();
+    }
+
+    getClickySwitches(): Promise<Product[]> {
+        return this.getSwitchesService.getClickySwitches();
+    }
 }

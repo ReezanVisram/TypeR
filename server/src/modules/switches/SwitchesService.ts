@@ -12,7 +12,15 @@ export default class SwitchesService implements SwitchesServiceContract {
         return this.productRepository.findAllSwitches();
     }
 
-    async getLinearSwitches(): Promise<Product[]> {
+    getLinearSwitches(): Promise<Product[]> {
         return this.productRepository.findAllLinearSwitches();
+    }
+
+    getTactileSwitches(): Promise<Product[]> {
+        return this.productRepository.findAllTactileSwitches();
+    }
+
+    getClickySwitches(): Promise<Product[]> {
+        return this.productRepository.findAllClickySwitches();
     }
 }

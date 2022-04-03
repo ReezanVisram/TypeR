@@ -18,5 +18,15 @@ export function createSwitchesRouter(controllers: {
         res.status(200).send(response);
     });
 
+    router.get('/tactile', async (req: Request, res: Response) => {
+        const response = await switchesController.getTactileSwitches();
+        res.status(200).send(response);
+    });
+
+    router.get('/clicky', async (req: Request, res: Response) => {
+        const response = await switchesController.getClickySwitches();
+        res.status(200).send(response);
+    });
+
     return router;
 }
