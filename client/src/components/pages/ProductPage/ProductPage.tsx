@@ -3,6 +3,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { PRODUCT_ROUTES } from '../../../lib/constants';
 import DiyKitsLayout from '../../layouts/DiyKitsLayout';
+import ProductInformationLayout from '../../layouts/ProductInformationLayout';
 import SwitchesLayout from '../../layouts/SwitchesLayout';
 import TopBar from '../../organisms/TopBar';
 import { ProductPageProps } from './types';
@@ -18,6 +19,9 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
                 </Route>
                 <Route path={PRODUCT_ROUTES.switches}>
                     <SwitchesLayout />
+                </Route>
+                <Route path={PRODUCT_ROUTES.product}>
+                    <ProductInformationLayout />
                 </Route>
             </Switch>
         </div>

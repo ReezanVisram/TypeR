@@ -1,13 +1,19 @@
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
+import SwitchesBlock from '../../blocks/SwitchesBlock';
+import ProductBar from '../../organisms/ProductBar';
+import { containerStyles } from './styles';
 import usePresenter from './SwitchesLayout.presenter';
 import { SwitchesLayoutProps } from './types';
 
 const SwitchesLayout: React.FC<SwitchesLayoutProps> = (props) => {
-    usePresenter(props);
+    const { switchesBar } = usePresenter(props);
     return (
         <div>
-            <Typography>Switches</Typography>
+            <ProductBar {...switchesBar} />
+            <Box sx={containerStyles}>
+                <SwitchesBlock />
+            </Box>
         </div>
     );
 };

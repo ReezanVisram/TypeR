@@ -21,6 +21,7 @@ export default class ProductRepository implements ProductRepositoryContract {
     findAllSwitches(): Promise<Product[]> {
         const queryBuilder = this.repository
             .createQueryBuilder('products')
+            .leftJoinAndSelect('products.images', 'images')
             .leftJoinAndSelect('products.variants', 'variants')
             .leftJoinAndSelect('variants.prices', 'prices')
             .innerJoinAndSelect('products.types', 'types')
