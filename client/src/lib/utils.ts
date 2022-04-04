@@ -23,3 +23,23 @@ export const determineSale = (prices: Price[]): SaleBarEnum => {
 
     return 'Normal Price';
 };
+
+export const formatDate = (date: Date) => {
+    const months = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'July',
+        'Aug',
+        'Sept',
+        'Oct',
+        'Nov',
+        'Dec',
+    ];
+    return `${
+        months[date.getMonth()]
+    } ${date.getDate()}, ${date.getFullYear()}`;
+};
