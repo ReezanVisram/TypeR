@@ -12,6 +12,10 @@ export default class SwitchesService implements SwitchesServiceContract {
         return this.productRepository.findAllSwitches();
     }
 
+    getSwitchById(id: number): Promise<Product> {
+        return this.productRepository.findOneById(id);
+    }
+
     getLinearSwitches(): Promise<Product[]> {
         return this.productRepository.findAllLinearSwitches();
     }

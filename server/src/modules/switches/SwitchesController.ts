@@ -12,6 +12,10 @@ export default class SwitchesController implements SwitchesControllerContract {
         return this.getSwitchesService.getAllSwitches();
     }
 
+    getSwitchById(id: number): Promise<Product> {
+        return this.getSwitchesService.getSwitchById(id);
+    }
+
     getLinearSwitches(): Promise<Product[]> {
         return this.getSwitchesService.getLinearSwitches();
     }

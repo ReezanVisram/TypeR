@@ -17,7 +17,18 @@ export default class ProductRepository implements ProductRepositoryContract {
     }
 
     findOneById(id: number): Promise<Product> {
-        return this.repository.findOneOrFail({ id });
+        const queryBuilder = this.repository
+            .createQueryBuilder('products')
+            .leftJoinAndSelect('products.images', 'images')
+            .where('images.product_id =: idOne', { idOne: id })
+            .leftJoinAndSelect('products.variants', 'variants')
+            .where('variants.product_id = :idTwo', { idTwo: id })
+            .leftJoinAndSelect('variants.prices', 'prices')
+            .leftJoinAndSelect('products.types', 'types')
+            .where('types.product_id = :idThree', { idThree: id })
+            .getOneOrFail();
+
+        return queryBuilder;
     }
 
     findAllSwitches(): Promise<Product[]> {

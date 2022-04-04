@@ -13,6 +13,13 @@ export function createSwitchesRouter(controllers: {
         res.status(200).send(response);
     });
 
+    router.get('/:id', async (req: Request, res: Response) => {
+        const { id } = req.params;
+
+        const response = await switchesController.getSwitchById(Number(id));
+        res.status(200).send(response);
+    });
+
     router.get('/linear', async (req: Request, res: Response) => {
         const response = await switchesController.getLinearSwitches();
         res.status(200).send(response);
