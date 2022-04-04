@@ -28,6 +28,8 @@ export type Variant = {
 export type Product = {
     id: number;
     productTitle: string;
+    vendor: string;
+    link: string;
     images: Image[];
     types: Type[];
     variants: Variant[];
