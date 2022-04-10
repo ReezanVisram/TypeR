@@ -1,12 +1,11 @@
 import { SelectChangeEvent } from '@mui/material';
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { SwitchesLayoutProps } from './types';
+import { ProductsLayoutProps } from './types';
 
-const usePresenter = (props: SwitchesLayoutProps): SwitchesLayoutProps => {
+const usePresenter = (props: ProductsLayoutProps): ProductsLayoutProps => {
     const history = useHistory();
     const { productType } = useParams<{ productType: string }>();
-    console.log(productType);
     const [activeSubType, setActiveSubType] = useState<string>('');
 
     const handleChange = (event: SelectChangeEvent<unknown>) => {

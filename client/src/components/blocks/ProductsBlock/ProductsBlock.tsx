@@ -2,14 +2,14 @@ import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import ProductCard from '../../organisms/ProductCard';
 import { containerStyles, gridItem } from './styles';
-import usePresenter from './SwitchesBlock.presenter';
-import { SwitchesBlockProps } from './types';
+import usePresenter from './ProductsBlock.presenter';
+import { ProductsBlockProps } from './types';
 
-const SwitchesBlock: React.FC<SwitchesBlockProps> = (props) => {
-    const { switchesList } = usePresenter(props);
+const ProductsBlock: React.FC<ProductsBlockProps> = (props) => {
+    const { productsList } = usePresenter(props);
 
-    const switchesCards =
-        switchesList?.map((value, index) => {
+    const productsCards =
+        productsList?.map((value, index) => {
             return (
                 <Grid item xs={4} md={2} xl={1} sx={gridItem}>
                     <ProductCard {...value} key={index} />
@@ -19,9 +19,9 @@ const SwitchesBlock: React.FC<SwitchesBlockProps> = (props) => {
 
     return (
         <Grid container spacing={2} columns={8} sx={containerStyles}>
-            {switchesCards}
+            {productsCards}
         </Grid>
     );
 };
 
-export default SwitchesBlock;
+export default ProductsBlock;

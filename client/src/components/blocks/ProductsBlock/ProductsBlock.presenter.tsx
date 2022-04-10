@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
 import { useHistory, useParams } from 'react-router-dom';
 import { determineSale } from '../../../lib/utils';
-import { getSwitchesUseCase } from './SwitchesBlock.interactor';
-import { SwitchesBlockProps } from './types';
+import { getProductsUseCase } from './ProductsBlock.interactor';
+import { ProductsBlockProps } from './types';
 
-const usePresenter = (props: SwitchesBlockProps): SwitchesBlockProps => {
+const usePresenter = (props: ProductsBlockProps): ProductsBlockProps => {
     const history = useHistory();
     let { productType, subType } = useParams<{
         productType: string;
@@ -16,8 +16,8 @@ const usePresenter = (props: SwitchesBlockProps): SwitchesBlockProps => {
     }
 
     const { data: switches } = useQuery(
-        ['getAllSwitches', productType, subType],
-        () => getSwitchesUseCase(productType, subType)
+        ['getProducts', productType, subType],
+        () => getProductsUseCase(productType, subType)
     );
 
     const handleProduct = (id: number) => {
@@ -25,7 +25,7 @@ const usePresenter = (props: SwitchesBlockProps): SwitchesBlockProps => {
     };
 
     props = {
-        switchesList: switches?.map((value, index) => {
+        productsList: switches?.map((value, index) => {
             return {
                 name: value.productTitle,
                 imageProps: {

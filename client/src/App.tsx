@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomeLayout from './components/layouts/HomeLayout';
 import ProductInformationPage from './components/pages/ProductInformationPage';
-import ProductPage from './components/pages/ProductPage';
+import ProductsPage from './components/pages/ProductsPage';
 
 const App: React.FC<{}> = () => {
     return (
@@ -12,7 +12,7 @@ const App: React.FC<{}> = () => {
                     <ProductInformationPage />
                 </Route>
                 <Route path='/products'>
-                    <ProductPage />
+                    <ProductsPage />
                 </Route>
                 <Route path='/'>
                     <HomeLayout />
