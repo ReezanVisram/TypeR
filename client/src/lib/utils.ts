@@ -1,11 +1,19 @@
 import { SaleBarEnum } from '../components/molecules/SaleBar/types';
 import { Price } from './types';
 
-export const formatPrice = (price: string) => {
+export const formatPrice = (price?: string) => {
+    if (!price) {
+        return '';
+    }
+
     return `$${Number(price).toFixed(2)}`;
 };
 
-export const determineSale = (prices: Price[]): SaleBarEnum => {
+export const determineSale = (prices?: Price[]): SaleBarEnum => {
+    if (!prices) {
+        return 'Error';
+    }
+
     let average = 0;
 
     for (let i = 0; i < prices.length - 1; i++) {
