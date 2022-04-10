@@ -7,6 +7,7 @@ export interface ProductRepositoryContract {
     findAllLinearSwitches(): Promise<Product[]>;
     findAllTactileSwitches(): Promise<Product[]>;
     findAllClickySwitches(): Promise<Product[]>;
+    findAllDiyKits(): Promise<Product[]>;
 }
 
 export default class ProductRepository implements ProductRepositoryContract {
@@ -38,13 +39,7 @@ export default class ProductRepository implements ProductRepositoryContract {
             .leftJoinAndSelect('products.variants', 'variants')
             .leftJoinAndSelect('variants.prices', 'prices')
             .innerJoinAndSelect('products.types', 'types')
-            .where('types.type = :linearType', { linearType: 'Linear switch' })
-            .orWhere('types.type = :tactileType', {
-                tactileType: 'Tactile switch',
-            })
-            .orWhere('types.type = :clickyType', {
-                clickyType: 'Clicky switch',
-            })
+            .where('types.type = :type', { type: 'Switches' })
             .getMany();
 
         return queryBuilder;
@@ -86,6 +81,19 @@ export default class ProductRepository implements ProductRepositoryContract {
             .leftJoinAndSelect('variants.prices', 'prices')
             .innerJoinAndSelect('products.types', 'types')
             .where('types.type = :clickyType', { clickyType: 'Clicky switch' })
+            .getMany();
+
+        return queryBuilder;
+    }
+
+    findAllDiyKits(): Promise<Product[]> {
+        const queryBuilder = this.repository
+            .createQueryBuilder('products')
+            .leftJoinAndSelect('products.images', 'images')
+            .leftJoinAndSelect('products.variants', 'variants')
+            .leftJoinAndSelect('variants.prices', 'prices')
+            .innerJoinAndSelect('products.types', 'types')
+            .where('types.type = :type', { type: 'DIY KIT' })
             .getMany();
 
         return queryBuilder;

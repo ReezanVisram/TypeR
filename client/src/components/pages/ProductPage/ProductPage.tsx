@@ -14,14 +14,14 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
             <TopBar />
 
             <Switch>
-                <Route path={PRODUCT_ROUTES.diyKits}>
+                {/* <Route path={PRODUCT_ROUTES.diyKits}>
                     <DiyKitsLayout />
                 </Route>
                 <Route path={PRODUCT_ROUTES.switches}>
                     <SwitchesLayout />
-                </Route>
-                <Route path={PRODUCT_ROUTES.product}>
-                    <ProductInformationLayout />
+                </Route> */}
+                <Route path='/products/:productType/:subType?'>
+                    <SwitchesLayout />
                 </Route>
             </Switch>
         </div>

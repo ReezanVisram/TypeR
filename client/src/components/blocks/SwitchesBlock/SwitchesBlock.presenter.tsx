@@ -6,18 +6,22 @@ import { SwitchesBlockProps } from './types';
 
 const usePresenter = (props: SwitchesBlockProps): SwitchesBlockProps => {
     const history = useHistory();
-    let { switchType } = useParams<{ switchType: string }>();
+    let { productType, subType } = useParams<{
+        productType: string;
+        subType: string;
+    }>();
 
-    if (!switchType) {
-        switchType = '';
+    if (!subType) {
+        subType = '';
     }
 
-    const { data: switches } = useQuery(['getAllSwitches', switchType], () =>
-        getSwitchesUseCase(switchType)
+    const { data: switches } = useQuery(
+        ['getAllSwitches', productType, subType],
+        () => getSwitchesUseCase(productType, subType)
     );
 
     const handleProduct = (id: number) => {
-        history.push(`/products/${id}`);
+        history.push(`/product/${id}`);
     };
 
     props = {

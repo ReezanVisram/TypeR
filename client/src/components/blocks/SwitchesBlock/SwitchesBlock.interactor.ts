@@ -1,5 +1,5 @@
 import { getSwitches } from '../../../modules/switches/switches.repository';
 
-export const getSwitchesUseCase = (switchType: string) => {
-    return getSwitches(switchType);
+export const getSwitchesUseCase = (productType: string, switchType: string) => {
+    return getSwitches(productType, switchType);
 };

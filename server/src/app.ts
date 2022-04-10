@@ -1,6 +1,7 @@
 import { Application } from 'express';
 import ProductRepository from './entities/product/ProductRepository';
 import createApp from './lib/createApp';
+import { DiyKitsController, DiyKitsService } from './modules/diyKits';
 import { ProductsController, ProductsService } from './modules/products';
 import { SwitchesController, SwitchesService } from './modules/switches/';
 import { createRouter } from './router';
@@ -14,5 +15,14 @@ export default function App(): Application {
     const switchesService = new SwitchesService(productRepository);
     const switchesController = new SwitchesController(switchesService);
 
-    return createApp(createRouter({ productsController, switchesController }));
+    const diyKitsService = new DiyKitsService(productRepository);
+    const diyKitsController = new DiyKitsController(diyKitsService);
+
+    return createApp(
+        createRouter({
+            productsController,
+            switchesController,
+            diyKitsController,
+        })
+    );
 }

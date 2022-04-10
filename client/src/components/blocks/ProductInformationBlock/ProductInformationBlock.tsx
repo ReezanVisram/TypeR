@@ -14,6 +14,7 @@ const ProductInformationBlock: React.FC<ProductInformationBlockProps> = (
     props
 ) => {
     const { title, graph, informationCard } = usePresenter(props);
+    console.log('rendering product information block');
     return (
         <Paper sx={productCardStyles} elevation={8}>
             <Typography variant='h3' sx={productTitleStyles}>
