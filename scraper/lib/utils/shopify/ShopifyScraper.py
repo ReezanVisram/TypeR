@@ -26,7 +26,7 @@ class ShopifyScraper(Scraper):
                 for product in products:
                     if (not self.check_product_exists(product['title'])):
                         new_product = Product(
-                            product_title=self.get_title(product), link=self.get_link(sub, product), vendor=self.get_vendor(product), variants=self.get_variants(product), types=self.get_product_types(product), images=self.get_product_images(product))
+                            product_title=self.get_title(product), link=self.get_link(sub, product), vendor=self.get_vendor(product), variants=self.get_variants(product), types=self.get_product_types(sub, product), images=self.get_product_images(product))
                         new_product.flush()
                     else:
                         self.get_current_prices(product)
@@ -46,12 +46,15 @@ class ShopifyScraper(Scraper):
     def get_vendor(self, product):
         return product['vendor']
 
-    def get_product_types(self, product):
+    def get_product_types(self, sub, product):
         types = []
 
         for tag in product['tags']:
             new_type = ProductType(type=tag)
             types.append(new_type)
+
+        if ('Switches' not in types and sub == 'switches'):
+            types.append(ProductType(type='Switches'))
 
         return types
 
