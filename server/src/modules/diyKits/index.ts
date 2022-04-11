@@ -15,5 +15,5 @@ type Controllers = {
     diyKitsController: DiyKitsControllerContract;
 };
 
-export const DiyKitsRouter = (controllers: Controllers) =>
+export const DiyKitsRouter = (controllers: Controllers): Router =>
     createDiyKitsRouter(controllers);
