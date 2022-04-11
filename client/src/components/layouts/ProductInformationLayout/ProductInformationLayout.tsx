@@ -7,7 +7,6 @@ import { ProductInformationLayoutProps } from './types';
 const ProductInformationLayout: React.FC<ProductInformationLayoutProps> = (
     props
 ) => {
-    console.log('rendering product information layout');
     return (
         <Box sx={containerStyles}>
             <ProductInformationBlock />

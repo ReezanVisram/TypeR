@@ -1,12 +1,13 @@
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import React from 'react';
 import ProductCard from '../../organisms/ProductCard';
 import { containerStyles, gridItem } from './styles';
 import usePresenter from './ProductsBlock.presenter';
 import { ProductsBlockProps } from './types';
+import Loading from '../../molecules/Loading';
 
 const ProductsBlock: React.FC<ProductsBlockProps> = (props) => {
-    const { productsList } = usePresenter(props);
+    const { isLoading, productsList } = usePresenter(props);
 
     const productsCards =
         productsList?.map((value, index) => {
@@ -17,11 +18,19 @@ const ProductsBlock: React.FC<ProductsBlockProps> = (props) => {
             );
         }) || [];
 
-    return (
-        <Grid container spacing={2} columns={8} sx={containerStyles}>
-            {productsCards}
-        </Grid>
-    );
+    let componentView;
+
+    if (isLoading) {
+        componentView = <Loading />;
+    } else {
+        componentView = (
+            <Grid container spacing={2} columns={8} sx={containerStyles}>
+                {productsCards}
+            </Grid>
+        );
+    }
+
+    return <>{componentView}</>;
 };
 
 export default ProductsBlock;

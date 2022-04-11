@@ -15,7 +15,7 @@ const usePresenter = (props: ProductsBlockProps): ProductsBlockProps => {
         subType = '';
     }
 
-    const { data: switches } = useQuery(
+    const { data: products, isLoading } = useQuery(
         ['getProducts', productType, subType],
         () => getProductsUseCase(productType, subType)
     );
@@ -25,7 +25,8 @@ const usePresenter = (props: ProductsBlockProps): ProductsBlockProps => {
     };
 
     props = {
-        productsList: switches?.map((value, index) => {
+        isLoading,
+        productsList: products?.map((value, index) => {
             return {
                 name: value.productTitle,
                 imageProps: {

@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import { Price, Product } from '../../../lib/types';
+import { Price } from '../../../lib/types';
 import { determineSale, formatPrice } from '../../../lib/utils';
 import { getProductUseCase } from './ProductInformationBlock.interactor';
 import { ProductInformationBlockProps } from './types';
@@ -10,11 +10,12 @@ const usePresenter = (
 ): ProductInformationBlockProps => {
     const { id } = useParams<{ id: string }>();
 
-    const { data: product } = useQuery(['getProduct', id], () =>
+    const { data: product, isLoading } = useQuery(['getProduct', id], () =>
         getProductUseCase(Number(id))
     );
 
     props = {
+        isLoading,
         title: product?.productTitle,
         graph: {
             data: product?.variants[0].prices,
