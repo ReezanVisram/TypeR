@@ -59,6 +59,9 @@ class ShopifyScraper(Scraper):
         if (product['product_type'] == 'Keyboard'):
             types.append(ProductType(type='DIY KIT'))
 
+        if (product['product_type'] not in types and product['product_type'] != ''):
+            types.append(ProductType(type=product['product_type']))
+
         return types
 
     def get_variants(self, product):

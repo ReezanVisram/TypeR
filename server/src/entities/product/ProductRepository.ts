@@ -108,7 +108,7 @@ export default class ProductRepository implements ProductRepositoryContract {
             .leftJoinAndSelect('products.variants', 'variants')
             .leftJoinAndSelect('variants.prices', 'prices')
             .innerJoinAndSelect('products.types', 'types')
-            .where('types.type LIKE :type', { type: '%keycaps%' })
+            .where('types.type LIKE :type', { type: '%keycap%' })
             .getMany();
 
         return queryBuilder;
