@@ -5,3 +5,5 @@ export const PRODUCT_ROUTES = {
     pcbs: '/products/pcbs',
     product: '/product/:id',
 };
+
+export const PRODUCT_TYPES = ['diy-kits', 'switches', 'keycaos', 'pcbs'];

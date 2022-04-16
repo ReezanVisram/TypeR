@@ -1,4 +1,4 @@
-import { Product } from '../../lib/types';
+import { Product, ProductNumber } from '../../lib/types';
 import axios from '../../lib/api/axios';
 import { BACKEND_URL } from '../../lib/config';
 
@@ -14,5 +14,10 @@ export const getProducts = async (
 
 export const getProduct = async (id: number): Promise<Product> => {
     const { data } = await axios.get(`${BACKEND_URL}/products/${id}`);
+    return data;
+};
+
+export const getProductNumbers = async (): Promise<ProductNumber[]> => {
+    const { data } = await axios.get(`${BACKEND_URL}/products/numbers`);
     return data;
 };

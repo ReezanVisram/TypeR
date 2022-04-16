@@ -34,3 +34,8 @@ export type Product = {
     types: Type[];
     variants: Variant[];
 };
+
+export type ProductNumber = {
+    productType: string;
+    productNumber: string;
+};

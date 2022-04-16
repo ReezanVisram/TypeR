@@ -8,6 +8,11 @@ export function createProductsRouter(controllers: {
 
     const { productsController } = controllers;
 
+    router.get('/numbers', async (req: Request, res: Response) => {
+        const response = await productsController.getProductNumbers();
+        res.status(200).send(response);
+    });
+
     router.get('/:id', async (req: Request, res: Response) => {
         const { id } = req.params;
 

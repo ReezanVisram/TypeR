@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import HomeLayout from './components/layouts/HomeLayout';
+import HomePage from './components/pages/HomePage';
 import ProductInformationPage from './components/pages/ProductInformationPage';
 import ProductsPage from './components/pages/ProductsPage';
 
@@ -15,7 +15,7 @@ const App: React.FC<{}> = () => {
                     <ProductsPage />
                 </Route>
                 <Route path='/'>
-                    <HomeLayout />
+                    <HomePage />
                 </Route>
             </Switch>
         </BrowserRouter>
