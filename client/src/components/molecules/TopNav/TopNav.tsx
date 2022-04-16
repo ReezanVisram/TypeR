@@ -1,4 +1,4 @@
-import { Box, Container, Toolbar, Typography } from '@mui/material';
+import { Container, Toolbar, Typography } from '@mui/material';
 import React from 'react';
 import NavItem from '../../atoms/NavItem';
 import usePresenter from './TopNav.presenter';
