@@ -11,12 +11,13 @@ from entities.variant.Variant import Variant
 from entities.variantImage.VariantImage import VariantImage
 from entities.price.Price import Price
 from entities.productImage.ProductImage import ProductImage
+from entities.vendor.Vendor import Vendor
 
 
 class ShopifyScraper(Scraper):
     @db_session
     def get(self):
-        with open(get_relative_path_of_sitemap(self.site_name)) as file:
+        with open(get_relative_path_of_sitemap(self.site_name.lower())) as file:
             self.sitemap = load(file)
 
             for sub in self.sitemap['subs']:
@@ -30,6 +31,10 @@ class ShopifyScraper(Scraper):
                         new_product.flush()
                     else:
                         self.get_current_prices(product)
+
+            if (not Vendor.exists(name=self.site_name)):
+                vendor = Vendor(name=self.site_name, link=self.sitemap['base'])
+                vendor.flush()
 
     def save(self):
         self.get()

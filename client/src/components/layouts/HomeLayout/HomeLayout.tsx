@@ -4,7 +4,7 @@ import { HomeLayoutProps } from './types';
 
 const HomeLayout: React.FC<HomeLayoutProps> = (props) => {
     return (
-        <div>
+        <div style={{ minHeight: '100vh' }}>
             <HomeBlock />
         </div>
     );

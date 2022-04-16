@@ -24,6 +24,7 @@ import {
     ProductImageRepository,
     ProductImageRepositoryContract,
 } from './productImage';
+import { Vendor, VendorRepository, VendorRepositoryContract } from './vendor';
 
 export {
     Product,
@@ -44,4 +45,7 @@ export {
     ProductImage,
     ProductImageRepository,
     ProductImageRepositoryContract,
+    Vendor,
+    VendorRepository,
+    VendorRepositoryContract,
 };

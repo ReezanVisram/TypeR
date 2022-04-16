@@ -5,6 +5,7 @@ from entities.product import Product
 from entities.variant import Variant
 from entities.variantImage import VariantImage
 from entities.productImage import ProductImage
+from entities.vendor import Vendor
 from pony.orm import show, sql_debug
 
 

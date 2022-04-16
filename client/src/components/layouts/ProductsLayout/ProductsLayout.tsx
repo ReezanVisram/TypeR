@@ -9,7 +9,7 @@ import { ProductsLayoutProps } from './types';
 const ProductsLayout: React.FC<ProductsLayoutProps> = (props) => {
     const { productBar } = usePresenter(props);
     return (
-        <div>
+        <div style={{ minHeight: '100vh' }}>
             <ProductBar {...productBar} />
             <Box sx={containerStyles}>
                 <ProductsBlock />

@@ -1,4 +1,5 @@
 import { Application } from 'express';
+import { VendorRepository } from './entities';
 import ProductRepository from './entities/product/ProductRepository';
 import createApp from './lib/createApp';
 import { DiyKitsController, DiyKitsService } from './modules/diyKits';
@@ -6,10 +7,12 @@ import { KeycapsController, KeycapsService } from './modules/keycaps';
 import { PcbsController, PcbsService } from './modules/pcbs';
 import { ProductsController, ProductsService } from './modules/products';
 import { SwitchesController, SwitchesService } from './modules/switches/';
+import { VendorsController, VendorsService } from './modules/vendors';
 import { createRouter } from './router';
 
 export default function App(): Application {
     const productRepository = new ProductRepository();
+    const vendorRepository = new VendorRepository();
 
     const productsService = new ProductsService(productRepository);
     const productsController = new ProductsController(productsService);
@@ -26,6 +29,9 @@ export default function App(): Application {
     const pcbsService = new PcbsService(productRepository);
     const pcbsController = new PcbsController(pcbsService);
 
+    const vendorsService = new VendorsService(vendorRepository);
+    const vendorsController = new VendorsController(vendorsService);
+
     return createApp(
         createRouter({
             productsController,
@@ -33,6 +39,7 @@ export default function App(): Application {
             diyKitsController,
             keycapsController,
             pcbsController,
+            vendorsController,
         })
     );
 }

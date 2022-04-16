@@ -15,7 +15,17 @@ const TopNav: React.FC<TopNavProps> = (props) => {
 
     return (
         <Container sx={containerStyles}>
-            <Typography {...titleProperties}>{title}</Typography>
+            <a
+                href='/'
+                style={{
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    color: '#D1E8E2',
+                }}
+            >
+                <Typography {...titleProperties}>{title}</Typography>
+            </a>
             <Toolbar disableGutters>{navItemComponents}</Toolbar>
         </Container>
     );

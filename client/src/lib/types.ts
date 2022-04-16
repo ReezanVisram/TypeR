@@ -39,3 +39,8 @@ export type ProductNumber = {
     productType: string;
     productNumber: string;
 };
+
+export type Vendor = {
+    name: string;
+    link: string;
+};

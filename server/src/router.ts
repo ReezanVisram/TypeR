@@ -6,6 +6,7 @@ import { ProductsRouter } from './modules/products';
 import { ProductsControllerContract } from './modules/products/types';
 import { SwitchesRouter } from './modules/switches';
 import { SwitchesControllerContract } from './modules/switches/types';
+import { VendorsControllerContract, VendorsRouter } from './modules/vendors';
 
 export const createRouter = (controllers: {
     productsController: ProductsControllerContract;
@@ -13,6 +14,7 @@ export const createRouter = (controllers: {
     diyKitsController: DiyKitsControllerContract;
     keycapsController: KeycapsControllerContract;
     pcbsController: PcbsControllerContract;
+    vendorsController: VendorsControllerContract;
 }): Router => {
     const router = Router();
 
@@ -25,6 +27,7 @@ export const createRouter = (controllers: {
     router.use('/diy-kits', DiyKitsRouter(controllers));
     router.use('/keycaps', KeycapsRouter(controllers));
     router.use('/pcbs', PcbsRouter(controllers));
+    router.use('/vendors', VendorsRouter(controllers));
 
     return router;
 };
