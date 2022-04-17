@@ -8,16 +8,16 @@ import time
 
 
 def main():
-    initialize_database()
     save_kbd_fans_products()
     save_tokeebs_products()
     save_novelkeys_products()
     save_spacecables_products()
 
 
-schedule.every().day.at('13:30').do(main)
+schedule.every().minute.do(main)
 
 if __name__ == '__main__':
+    initialize_database()
     while True:
         schedule.run_pending()
         time.sleep(1)
