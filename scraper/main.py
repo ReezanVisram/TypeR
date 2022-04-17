@@ -14,7 +14,7 @@ def main():
     save_spacecables_products()
 
 
-schedule.every().minute.do(main)
+schedule.every().day.do(main)
 
 if __name__ == '__main__':
     initialize_database()
