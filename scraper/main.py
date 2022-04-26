@@ -18,6 +18,7 @@ schedule.every().day.do(main)
 
 if __name__ == '__main__':
     initialize_database()
+
     while True:
         schedule.run_pending()
         time.sleep(1)

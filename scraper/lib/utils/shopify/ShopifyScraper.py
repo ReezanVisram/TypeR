@@ -13,10 +13,16 @@ from entities.price.Price import Price
 from entities.productImage.ProductImage import ProductImage
 from entities.vendor.Vendor import Vendor
 
+import datetime
+
 
 class ShopifyScraper(Scraper):
     @db_session
     def get(self):
+        for price in Price.select():
+            if ((datetime.datetime.now() - price.price_date).days > 7):
+                price.delete()
+
         with open(get_relative_path_of_sitemap(self.site_name.lower())) as file:
             self.sitemap = load(file)
 
@@ -109,6 +115,7 @@ class ShopifyScraper(Scraper):
 
     def get_current_prices(self, product):
         for variant in product['variants']:
+
             new_price = Price(price=variant['price'], variant_id=(Variant.select(
                 lambda v: v.variant_title == variant['title'] or (variant['title'] == 'Default Title' and v.variant_title == product['title']))).first())
             new_price.flush()
