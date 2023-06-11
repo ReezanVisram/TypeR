@@ -3,8 +3,10 @@ from modules.kbdfans.KBDFans import save_kbd_fans_products
 from modules.tokeebs.tokeebs import save_tokeebs_products
 from modules.novelkeys.novelkeys import save_novelkeys_products
 from modules.spacecables.spacecables import save_spacecables_products
-import schedule
-import time
+from flask import Flask
+
+app = Flask(__name__)
+initialize_database()
 
 
 def main():
@@ -14,11 +16,11 @@ def main():
     save_spacecables_products()
 
 
-schedule.every().day.do(main)
+@app.get("/")
+def home():
+    main()
+    return "success"
 
-if __name__ == '__main__':
-    initialize_database()
 
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+if __name__ == "__main__":
+    app.run()

@@ -1,9 +1,10 @@
-FROM python:3
+FROM python:3.9
 
-WORKDIR /usr/src/app
+ENV PYTHONBUFFERED True
+WORKDIR /app
 
-COPY requirements.txt ./
+COPY . ./
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 main:app
