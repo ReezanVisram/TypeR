@@ -2,10 +2,11 @@
     "name": "server",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
-        "build": "tsc",
-        "start:dev": "nodemon /src/server.ts"
+        "build": "tsc -b",
+        "start:dev": "nodemon /src/server.ts",
+        "start": "node build/server.js"
     },
     "keywords": [],
     "author": "",

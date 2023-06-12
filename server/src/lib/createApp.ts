@@ -1,7 +1,8 @@
-import express, { Application, Router } from 'express';
+import express, { Application, Router, Request, Response } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { FRONTEND_URL } from './config';
+import * as path from 'path';
 
 const corsMiddleware = cors({
     origin: [FRONTEND_URL],
@@ -15,6 +16,7 @@ export default function createApp(router: Router): Application {
     app.use(cookieParser());
 
     app.use(corsMiddleware);
+
     app.use(router);
 
     return app;

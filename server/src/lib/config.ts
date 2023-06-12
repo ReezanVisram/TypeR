@@ -10,4 +10,5 @@ export const {
     MYSQL_USERNAME = '',
     MYSQL_ROOT_PASSWORD = '',
     MYSQL_DATABASE = '',
+    MYSQL_SOCKET_PATH = '',
 } = process.env;

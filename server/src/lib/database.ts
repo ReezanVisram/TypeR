@@ -4,7 +4,9 @@ import {
     MYSQL_USERNAME,
     MYSQL_ROOT_PASSWORD,
     MYSQL_DATABASE,
+    MYSQL_SOCKET_PATH
 } from './config';
+import * as path from 'path';
 
 let retries = 0;
 const createDatabaseConnection = async () => {
@@ -19,7 +21,10 @@ const createDatabaseConnection = async () => {
             database: MYSQL_DATABASE,
             username: MYSQL_USERNAME,
             password: MYSQL_ROOT_PASSWORD,
-            entities: [`${__dirname}/../entities/*{.ts,.js}`],
+            entities: [path.join(__dirname, '/../entities/**/*{.js,.ts}')],
+            extra: {
+                socketPath: MYSQL_SOCKET_PATH,
+            },
             synchronize: true,
         });
     } catch {
